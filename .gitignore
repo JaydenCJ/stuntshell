@@ -1,0 +1,19 @@
+# build artifacts
+/stuntshell
+/dist/
+
+# staged doubles and journals from local experiments
+/.stunts/
+stuntshell.json
+!examples/*.json
+
+# test and coverage output
+*.test
+*.out
+coverage.*
+
+# editor noise
+.idea/
+.vscode/
+*.swp
+.DS_Store

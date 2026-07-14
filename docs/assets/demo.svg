@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="430" viewBox="0 0 720 430" font-family="Menlo, Consolas, monospace" font-size="13" xml:space="preserve">
+  <rect width="720" height="430" rx="10" fill="#101418"/>
+  <circle cx="24" cy="22" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="22" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="22" r="6" fill="#27c93f"/>
+  <text x="360" y="27" fill="#8b949e" text-anchor="middle" font-size="12">stuntshell — stunt doubles for shell commands</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="60"><tspan fill="#7ee787">$</tspan> stuntshell build --manifest stuntshell.json --out .stunts</text>
+    <text x="24" y="82"><tspan fill="#79c0ff">stuntshell build</tspan> — 2 doubles staged</text>
+    <text x="24" y="110"><tspan fill="#7ee787">$</tspan> eval "$(stuntshell path)" <tspan fill="#8b949e"># doubles now shadow the real commands</tspan></text>
+    <text x="24" y="132"><tspan fill="#7ee787">$</tspan> git status</text>
+    <text x="24" y="152">On branch main</text>
+    <text x="24" y="172">nothing to commit, working tree clean</text>
+    <text x="24" y="194"><tspan fill="#7ee787">$</tspan> git push origin main <tspan fill="#8b949e"># allowed by the manifest: exits 0</tspan></text>
+    <text x="24" y="216"><tspan fill="#7ee787">$</tspan> git push --force origin main <tspan fill="#8b949e"># the agent misbehaves…</tspan></text>
+    <text x="24" y="238">git: no stunt rule matched: push --force origin main</text>
+    <text x="24" y="268"><tspan fill="#7ee787">$</tspan> stuntshell verify</text>
+    <text x="24" y="290"><tspan fill="#79c0ff">stuntshell verify</tspan> — 2 expectations, 3 invocations</text>
+    <text x="24" y="318">  <tspan fill="#7ee787">ok  </tspan>  git status                             called 1× (min 1)</text>
+    <text x="24" y="340">  <tspan fill="#f778ba">FAIL</tspan>  never force-push                       called 1× (exactly 0)</text>
+    <text x="24" y="368">verify: <tspan fill="#f778ba">FAIL</tspan> <tspan fill="#8b949e"># exit 1 — the journal has the evidence</tspan></text>
+    <text x="24" y="404" fill="#8b949e"># every invocation journaled — deterministic, offline, no timestamps</text>
+  </g>
+</svg>

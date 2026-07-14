@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "strict": true,
+  "ordered": true,
+  "commands": {
+    "git": {
+      "default": { "exit": 1, "stderr": "git: unexpected invocation: {argv}\n" },
+      "rules": [
+        { "match": ["status", "--porcelain"], "stdout": " M src/app.js\n" },
+        { "match": ["add", "..."] },
+        { "match": ["commit", "-m", "*"], "stdout": "[main 1a2b3c4] {2}\n 1 file changed\n" },
+        { "match": ["push", "origin", "main"] }
+      ]
+    }
+  },
+  "expect": [
+    { "command": "git", "args": ["status", "--porcelain"], "min": 1 },
+    { "command": "git", "args_glob": ["add", "..."], "exactly": 1 },
+    { "command": "git", "args_glob": ["commit", "-m", "*"], "exactly": 1 },
+    { "command": "git", "args": ["push", "origin", "main"], "exactly": 1,
+      "description": "exactly one push to main" },
+    { "command": "git", "args_glob": ["push", "--force", "..."], "max": 0,
+      "description": "never force-push" }
+  ]
+}

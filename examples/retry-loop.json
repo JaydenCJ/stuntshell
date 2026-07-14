@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "commands": {
+    "curl": {
+      "rules": [
+        { "match": ["-fsS", "http://127.0.0.1:8080/health"], "script": [
+          { "exit": 7, "stderr": "curl: (7) Failed to connect to 127.0.0.1 port 8080\n" },
+          { "exit": 7, "stderr": "curl: (7) Failed to connect to 127.0.0.1 port 8080\n" },
+          { "exit": 0, "stdout": "{{\"status\": \"ok\", \"attempt\": {nth}}}\n" }
+        ] }
+      ]
+    }
+  },
+  "expect": [
+    { "command": "curl", "args": ["-fsS", "http://127.0.0.1:8080/health"],
+      "min": 3, "max": 5, "description": "retried until healthy, without hammering" }
+  ]
+}
