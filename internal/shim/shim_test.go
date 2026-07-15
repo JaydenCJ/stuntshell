@@ -148,11 +148,12 @@ func TestBuildPreservesExistingJournal(t *testing.T) {
 func TestBuildIsDeterministic(t *testing.T) {
 	dir := t.TempDir()
 	m := testManifest(t)
-	first, err := Build(m, filepath.Join(dir, "a"), "/opt/stuntshell", "/work/m.json", "/work/log.jsonl")
+	logPath := filepath.Join(dir, "log.jsonl")
+	first, err := Build(m, filepath.Join(dir, "a"), "/opt/stuntshell", "/work/m.json", logPath)
 	if err != nil {
 		t.Fatal(err)
 	}
-	second, err := Build(m, filepath.Join(dir, "b"), "/opt/stuntshell", "/work/m.json", "/work/log.jsonl")
+	second, err := Build(m, filepath.Join(dir, "b"), "/opt/stuntshell", "/work/m.json", logPath)
 	if err != nil {
 		t.Fatal(err)
 	}
